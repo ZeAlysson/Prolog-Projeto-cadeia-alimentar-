@@ -1,0 +1,34 @@
+%Fatos
+
+% Produtores: aqueles que produzem o proprio alimento, seja através da
+% fotossíntese ou quimiossíntese.
+%
+% Consumidores primarios: organismos que se alimentam diretamente dos
+% Produtores.
+%
+% Consumidores secundarios: são os seres vivos que se alimentam dos
+% consumidores primários.
+
+
+vegetacao(arbusto).
+vegetacao(arvore).
+vegetacao(capim).
+
+% Aqueles que se alimentam de fontes vegetais:
+herbivoro(gazela).
+herbivoro(gafanhoto).
+herbivoro(cupim).
+
+% Seres vivos que consomem alimentos de fonte vegetal e animal:
+onivoro(rato).
+onivoro(javali).
+onivoro(suricato).
+
+% Animais que se alimenam da carne de outros animais.
+carnivoro(abutre).
+carnivoro(hiena).
+carnivoro(guepardo).
+
+
+
+
