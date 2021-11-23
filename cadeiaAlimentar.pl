@@ -11,7 +11,8 @@
 produtor(arvore).
 produtor(vegetacao).
 
-% Consumidores
+%Consumidores
+
 animal(girafa).
 animal(elefante).
 animal(cupim).
@@ -36,6 +37,7 @@ animal(leao).
 
 
 %Fatos
+
 come(girafa, arvore).
 come(elefante, arvore).
 come(cupim, vegetacao).
@@ -47,16 +49,52 @@ come(formiga, vegetacao).
 come(gazela, vegetacao).
 come(gnu, vegetacao).
 come(rato, vegetacao).
-come(guepardo, girafa), come(guepardo, elefante);
-come(serval, cupim), come(serval, gafanhoto), come(serval, rato), come(serval, gnu).
+
+come(guepardo, girafa).
+come(guepardo, elefante).
+
+come(serval, cupim).
+come(serval, gafanhoto).
+come(serval, rato).
+come(serval, gnu).
+
 come(suricato, gafanhoto).
 come(pangolim, formiga).
-come(porcoformigueiro, cupim), come(porcoformigueiro, formiga).
-come(abutre, guepardo), come(abutre, girafa), come(abutre, elefante), come(abutre, zebra), come(abutre, gazela).
-come(hiena, suricato), come(hiena, elefante), come(hiena, zebra), come(hiena, porcoformigueiro), come(hiena, gnu), come(hiena, pantera).
-come(pantera, javali), come(pantera, zebra), come(pantera, gnu).
-come(lince, rato), come(lince, gazela).
-come(leao, guepardo), come(leao, girafa), come(leao, javali), come(leao, antilope), come(leao, zebra), come(leao, hiena), come(leao, gnu), come(leao, pantera), come(leao, gazela), come(leao, lince).
+
+come(porcoformigueiro, cupim).
+come(porcoformigueiro, formiga).
+
+come(abutre, guepardo).
+come(abutre, girafa).
+come(abutre, elefante).
+come(abutre, zebra).
+come(abutre, gazela).
+
+come(hiena, suricato).
+come(hiena, elefante).
+come(hiena, zebra).
+come(hiena, porcoformigueiro).
+come(hiena, gnu).
+come(hiena, pantera).
+
+come(pantera, javali).
+come(pantera, zebra).
+come(pantera, gnu).
+
+come(lince, rato).
+come(lince, gazela).
+
+come(leao, guepardo).
+come(leao, girafa).
+come(leao, javali).
+come(leao, antilope). 
+come(leao, zebra).
+come(leao, hiena). 
+come(leao, gnu).
+come(leao, pantera). 
+come(leao, gazela).
+come(leao, lince).
+
 
 
 % Aqueles que se alimentam de fontes vegetais:
