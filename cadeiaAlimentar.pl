@@ -88,13 +88,14 @@ come(leao, lince).
 %   4.1 - Niveis troficos
 
 %      Herbivoros - aqueles que se alimentam de fontes vegetais:
-%      Se um animal X come um Y que esteja no conjunto de produtores, logo X sera herbivoro.
+%      Se um animal X come um Y que esteja no conjunto de produtores,
+%      logo X sera herbivoro.
 
         herbivoro(X) :- come(X, Y), produtor(Y).
 
 %      Onivoros - seres vivos que consomem alimentos de fonte vegetal e animal:
-%      Se um animal X come um Y e Z que esteja no conjunto de animais e produtores, retrospectivamente,
-%      logo X sera um animal onivoro
+%      Se um animal X come um Y e Z que esteja no conjunto de animais e
+%      produtores, retrospectivamente, logo X sera um animal onivoro
 
         onivoro(X) :- come(X,Y), come(X,Z), animal(Y), produtor(Z).
 
