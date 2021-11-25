@@ -1,12 +1,13 @@
 
 
 % 1 - Produtores
+% Aqueles que produzem o proprio alimento, seja através da fotossíntese ou quimiossíntese.
 
 produtor(arvore).
 produtor(vegetacao).
 
 % 2 - Consumidores
-
+% Seres que precisam se alimentar de outros.
 animal(girafa).
 animal(elefante).
 animal(cupim).
@@ -87,36 +88,38 @@ come(leao, lince).
 
 %   4.1 - Niveis troficos
 
-%      Herbivoros - aqueles que se alimentam de fontes vegetais:
+%      Herbívoros - aqueles que se alimentam de fontes vegetais:
 %      Se um animal X come um Y que esteja no conjunto de produtores,
 %      logo X sera herbivoro.
+        herbivoro :- come(X, Y), produtor(Y),
+        format('~w é herbívoro ~n', [X]).
 
-        herbivoro(X) :- come(X, Y), produtor(Y).
 
-%      Onivoros - seres vivos que consomem alimentos de fonte vegetal e animal:
+%      Onívoros - seres vivos que consomem alimentos de fonte vegetal e animal.
 %      Se um animal X come um Y e Z que esteja no conjunto de animais e
-%      produtores, retrospectivamente, logo X sera um animal onivoro
+%      produtores, retrospectivamente, logo X será um animal onivoro
+       onivoro(X) :- come(X,Y), come(X,Z), animal(Y), produtor(Z).
 
-        onivoro(X) :- come(X,Y), come(X,Z), animal(Y), produtor(Z).
-
-%      Carnivoros - animais que alimentam-se apenas da carne de outros animais:
-%      Se um animal X come um Y que esteja no conjunto de animais, logo X sera carnivoro.
-
+%      Carnívoros - animais que alimentam-se apenas da carne de outros animais.
+%      Se um animal X come um Y que esteja no conjunto de animais, logo X será carnívoro.
         carnivoro(X) :- come(X,Y), animal(Y).
 
-
-
-
+%      Consumidores primários - organismos que se alimentam diretamente dos produtores.
         consumidorPrimario(X) :- come(X,Y), produtor(Y).
 
-
+%      Consumidores secundários - são os seres vivos que se alimentam dos consumidores primários.
         consumidorSecundario(X) :- come(X,Y), come(Y, Z), produtor(Z).
 
-
+%      Consumidores terciários - organismos que consomem os secundários.
         consumidorTerciario(X) :- come(X, Y), come(Y, Z), come(Z, W), produtor(W).
 
-        
+%      Consumidor final - indivíduos que estão no topo da cadeia e não servem de alimento.
         consumidorFinal(X) :- come(X, Y), come(Y, Z), come(Z, W), come(W, K), produtor(K).
+
+
+%especie(animal, nivelTrofico, habitat).
+%alimenta(alimentado, nivelTroficoConsumidor, predador).
+especie(leao, carnivoro, savana).
 
 
 

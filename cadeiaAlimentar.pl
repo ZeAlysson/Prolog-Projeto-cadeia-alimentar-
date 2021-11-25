@@ -1,4 +1,4 @@
-
+%------------------ CADEIA ALIMENTAR AFRICANA ---------------
 
 % 1 - Produtores 
 % Aqueles que produzem o proprio alimento, seja através da fotossíntese ou quimiossíntese.
@@ -103,16 +103,128 @@ come(leao, lince).
         carnivoro(X) :- come(X,Y), animal(Y).
 
 %      Consumidores primários - organismos que se alimentam diretamente dos produtores.
+%      Segue basicamente a mesma lógica para animais herbívoros. Se X se alimenta de um 
+%      ser produtor, X será denominado como consumidor primário.
         consumidorPrimario(X) :- come(X,Y), produtor(Y).
 
 %      Consumidores secundários - são os seres vivos que se alimentam dos consumidores primários.
+%      Quando um animal consome outro ser onde o mesmo se alimenta de um produtor, logo
+%      será considerado um consumidor secundário
         consumidorSecundario(X) :- come(X,Y), come(Y, Z), produtor(Z).
 
 %      Consumidores terciários - organismos que consomem os secundários. 
         consumidorTerciario(X) :- come(X, Y), come(Y, Z), come(Z, W), produtor(W).
 
-%      Consumidor final - indivíduos que estão no topo da cadeia e não servem de alimento.
-        consumidorFinal(X) :- come(X, Y), come(Y, Z), come(Z, W), come(W, K), produtor(K).
+%      Consumidor quartenário - indivíduos que estão no topo da cadeia e não servem de alimento.
+        consumidorQuartenario(X) :- come(X, Y), come(Y, Z), come(Z, W), come(W, K), produtor(K).
+
+
+% 5 - Bases de dados relacionais
+
+%  Relações:
+%    * especie, contendo nome, nível trófico e habitat.
+%    * alimento, contendo presa, posição na cadeia, predador.
+
+%  Essas relações podem originar tabelas.
+%  ________________________________________
+% | Nome espécie | Nível trófico | Habitat |
+% |    Girafa    |   Herbívoro   |  Savana |
+% |    Elefante  |   Herbívoro   |  Campos |
+% |      ...     |      ...      |   ...   |
+% |______________|_______________|_________|
+
+%Base de dados prolog para tabela espécie:
+especie(girafa, herbivoro, savana).
+especie(elefante, herbivoro, campos).
+especie(cupim, herbivoro, madeiras).
+especie(gafanhoto, herbivoro, campos).
+especie(javali, onivoro, bosques).
+especie(antilope, herbivoro, savana).
+especie(zebra, herbivoro, savana).
+especie(formiga, herbivoro, subsolo).
+especie(gazela, herbivoro, savana).
+especie(gnu, herbivoro, savana).
+especie(rato, herbivoro, corregos).
+especie(guepardo, carnivoro, savana).
+especie(serval, carnivoro, savana).
+especie(suricato, carnivoro, campos).
+especie(pangolim, carnivoro, bosques).
+especie(porcoformigueiro, carnivoro, savana).
+especie(abutre, carnivoro, savana).
+especie(hiena, carnivoro, savana).
+especie(pantera, carnivoro, savana).
+especie(lince, carnivoro, bosques).
+especie(leao, carnivoro, savana).
+
+%  ____________________________________________________
+% |     Presa    |    Posição na cadeia    |  Predador |
+% |    Gafanhoto |   Consumidor Primário   |  Suricato |
+% |    Javali    |   Consumidor Primário   |  Pantera  |
+% |      ...     |           ...           |    ...    |
+% |______________|_________________________|___________|
+
+%Base de dados prolog para tabela alimento:
+alimento(arvore, produtor, girafa).
+alimento(arvore, produtor, elefante).
+alimento(vegetacao, produtor, cupim).
+alimento(vegetacao, produtor, gafanhoto).
+alimento(vegetacao, produtor, javali).
+alimento(vegetacao, produtor, antilope).
+alimento(vegetacao, produtor, zebra).
+alimento(vegetacao, produtor, formiga).
+alimento(vegetacao, produtor, gazela).
+alimento(vegetacao, produtor, gnu).
+alimento(vegetacao, produtor, rato).
+alimento(girafa, consumidorPrimario, guepardo).
+alimento(girafa, consumidorPrimario, abutre).
+alimento(girafa, consumidorPrimario, leao).
+alimento(elefante, consumidorPrimario, guepardo).
+alimento(elefante, consumidorPrimario, abutre).
+alimento(elefante, consumidorPrimario, hiena).
+alimento(cupim, consumidorPrimario, serval).
+alimento(cupim, consumidorPrimario, porcoformigueiro).
+alimento(gafanhoto, consumidorPrimario, serval).
+alimento(gafanhoto, consumidorPrimario, suricato).
+alimento(javali, consumidorPrimario, pantera).
+alimento(javali, consumidorPrimario, leao).
+alimento(antilope, consumidorPrimario, leao).
+alimento(zebra, consumidorPrimario, abutre).
+alimento(zebra, consumidorPrimario, hiena).
+alimento(zebra, consumidorPrimario, pantera).
+alimento(zebra, consumidorPrimario, leao).
+alimento(formiga, consumidorPrimario, pangolim).
+alimento(formiga, consumidorPrimario, porcoformigueiro).
+alimento(gazela, consumidorPrimario, abutre).
+alimento(gazela, consumidorPrimario, lince).
+alimento(gazela, consumidorPrimario, leao).
+alimento(gnu, consumidorPrimario, serval).
+alimento(gnu, consumidorPrimario, hiena).
+alimento(gnu, consumidorPrimario, pantera).
+alimento(gnu, consumidorPrimario, leao).
+alimento(rato, consumidorPrimario, serval).
+alimento(rato, consumidorPrimario, lince).
+alimento(guepardo, consumidorSecundario, abutre).
+alimento(guepardo, consumidorSecundario, leao).
+alimento(serval, consumidorSecundario, decompositores).
+alimento(suricato, consumidorSecundario, hiena).
+alimento(pangolim, consumidorSecundario, decompositores).
+alimento(porcoformigueiro, consumidorSecundario, hiena).
+alimento(abutre, consumidorSecundario, decompositores).
+alimento(abutre, consumidorTerciario, decompositores).
+alimento(hiena, consumidorSecundario, leao).
+alimento(hiena, consumidorTerciario, leao).
+alimento(pantera, consumidorSecundario, hiena).
+alimento(pantera, consumidorSecundario, leao).
+alimento(lince, consumidorSecundario, leao).
+alimento(leao, consumidorSecundario, decompositores).
+alimento(leao, consumidorTerciario, decompositores).
+
+
+
+
+
+
+
 
 
 
