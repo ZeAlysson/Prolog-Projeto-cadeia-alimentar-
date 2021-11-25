@@ -126,6 +126,7 @@ come(leao, lince).
 %    * alimento, contendo presa, posição na cadeia, predador.
 
 %  Essas relações podem originar tabelas.
+%  Tabela relacional de espécie:
 %  ________________________________________
 % | Nome espécie | Nível trófico | Habitat |
 % |    Girafa    |   Herbívoro   |  Savana |
@@ -133,7 +134,8 @@ come(leao, lince).
 % |      ...     |      ...      |   ...   |
 % |______________|_______________|_________|
 
-%Base de dados prolog para tabela espécie:
+% Base de dados prolog para tabela espécie:
+
 especie(girafa, herbivoro, savana).
 especie(elefante, herbivoro, campos).
 especie(cupim, herbivoro, madeiras).
@@ -156,6 +158,8 @@ especie(pantera, carnivoro, savana).
 especie(lince, carnivoro, bosques).
 especie(leao, carnivoro, savana).
 
+
+%  Tabela relacional de alimento:
 %  ____________________________________________________
 % |     Presa    |    Posição na cadeia    |  Predador |
 % |    Gafanhoto |   Consumidor Primário   |  Suricato |
@@ -163,7 +167,8 @@ especie(leao, carnivoro, savana).
 % |      ...     |           ...           |    ...    |
 % |______________|_________________________|___________|
 
-%Base de dados prolog para tabela alimento:
+% Base de dados prolog para tabela alimento:
+
 alimento(arvore, produtor, girafa).
 alimento(arvore, produtor, elefante).
 alimento(vegetacao, produtor, cupim).
